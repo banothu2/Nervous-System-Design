@@ -13,7 +13,7 @@ class Ball {
     if(x == 0 && y == 0){
         position = new PVector( random(width), random(height));
     } else {
-        position = new PVector( x, y);
+        position = new PVector( x + randomGaussian()*20, y + randomGaussian()*20);
     }
    velocity = new PVector( random(-1.0, 1.0), random(-1.0, 1.0));
    size = randomGaussian()*30+10;
@@ -23,7 +23,8 @@ class Ball {
   
   void display(){
      noStroke();
-     fill(colour);
+     fill(colour);  
+    
      ellipse(position.x, position.y, size, size); 
   }
 
@@ -48,7 +49,9 @@ ArrayList<Ball> balls;
 
 
 void mousePressed(){
-  balls.add(new Ball(mouseX, mouseY));
+  for(int i = 0; i < 10; i++){
+    balls.add(new Ball(mouseX, mouseY));
+  }
 }
 
 void setup(){
